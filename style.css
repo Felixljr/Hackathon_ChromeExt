@@ -1,0 +1,11 @@
+* {
+  margin: 0;
+}
+
+html, body {
+  background-color: #c0babc;
+}
+
+#element{
+  color: hsl(720, 30%, 60%)
+}

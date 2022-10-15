@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const goButton = document.getElementById("GoButton");
   const selectedColorSwatch = document.getElementById("displaySelectedColor");
+  const body = document.querySelector('body');
 
   goButton.addEventListener("click", function () {
     //get color entered and set it as selected color
@@ -102,6 +103,36 @@ document.addEventListener("DOMContentLoaded", () => {
           navigator.clipboard.writeText(anaColors[1]);
         });
       }
+    });
+    body.addEventListener('keydown', (e) => {
+      if (e.code === 'ArrowLeft') {
+        console.log('pressed left');
+        selectedColorSwatch.style.backgroundColor = adjustHue(selectedColorSwatch.style.backgroundColor, "left");
+        color3.style.backgroundColor = adjustHue(color3.style.backgroundColor, "left");
+        color4.style.backgroundColor = adjustHue(color4.style.backgroundColor, "left");
+        color5.style.backgroundColor = adjustHue(color5.style.backgroundColor, "left");
+        }
+      if (e.code === 'ArrowRight') {
+        console.log('pressed right');
+        selectedColorSwatch.style.backgroundColor = adjustHue(selectedColorSwatch.style.backgroundColor, "right");
+        color3.style.backgroundColor = adjustHue(color3.style.backgroundColor, "right");
+        color4.style.backgroundColor = adjustHue(color4.style.backgroundColor, "right");
+        color5.style.backgroundColor = adjustHue(color5.style.backgroundColor, "right");
+        }
+      if (e.code === 'ArrowDown') {
+        console.log('pressed down');
+        selectedColorSwatch.style.backgroundColor = adjustLightness(selectedColorSwatch.style.backgroundColor, "down");
+        color3.style.backgroundColor = adjustLightness(color3.style.backgroundColor, "down");
+        color4.style.backgroundColor = adjustLightness(color4.style.backgroundColor, "down");
+        color5.style.backgroundColor = adjustLightness(color5.style.backgroundColor, "down");
+        }
+      if (e.code === 'ArrowUp') {
+        console.log('pressed up');
+        selectedColorSwatch.style.backgroundColor = adjustLightness(selectedColorSwatch.style.backgroundColor, "up");
+        color3.style.backgroundColor = adjustLightness(color3.style.backgroundColor, "up");
+        color4.style.backgroundColor = adjustLightness(color4.style.backgroundColor, "up");
+        color5.style.backgroundColor = adjustLightness(color5.style.backgroundColor, "up");
+        }
     });
   });
 });
@@ -210,4 +241,34 @@ function extractElColorById(elID) {
   return getComputedStyle(el).color;
 }
 
-// rgb(59, 100, 50)
+// function will adjust hue based on user input. left will
+// decrement hue, right will increment hue
+function adjustHue(rgbStr, direction) {
+  let adjustColor = toRGBArray(rgbStr);
+  adjustColor = RGBToHSL(adjustColor);
+  adjustColor = toHSLArray(adjustColor);
+  [h, s, l] = adjustColor;
+  if (direction === "right") {
+    h += 5;
+    // console.log("up triggered");
+  } else if (direction === "left") {
+    h -= 5;
+    // console.log("down triggered");
+  }
+  return `hsl(${h}, ${s}%, ${l}%)`;
+}
+
+function adjustLightness(rgbStr, direction){
+  let adjustColor = toRGBArray(rgbStr);
+  adjustColor = RGBToHSL(adjustColor);
+  adjustColor = toHSLArray(adjustColor);
+  [h, s, l] = adjustColor;
+  if (direction === "up") {
+    l += 1;
+    // console.log("up triggered");
+  } else if (direction === "down") {
+    l -= 1;
+    // console.log("down triggered");
+  }
+  return `hsl(${h}, ${s}%, ${l}%)`;
+}

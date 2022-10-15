@@ -6,7 +6,9 @@ body {
   background-color: #ffd3ba;
   width: 400px;
   height: 275px;
+  border: 6px solid #805d93;
 }
+
 /* common elements that are centered */
 #banner,
 #displaySelectedColor,

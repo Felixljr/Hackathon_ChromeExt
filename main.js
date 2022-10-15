@@ -9,50 +9,74 @@ document.addEventListener('DOMContentLoaded', () => {
     //extend the viewport to accomodate label and dropdown menu
     document.body.style.height = '350px';
     //Label/text for this section
-    const renderLabel = document.createElement('h3')
-    renderLabel.setAttribute("class", "selectScheme");
-    renderLabel.innerHTML = 'Select a Color Scheme';
-    renderLabel.style.marginTop = '15px';
-    document.getElementById('render').appendChild(renderLabel);
+    // const renderLabel = document.createElement('h3')
+    // renderLabel.setAttribute("class", "selectScheme");
+    // renderLabel.innerHTML = 'Select a Color Scheme';
+    // renderLabel.style.marginTop = '15px';
+    // document.getElementById('render').appendChild(renderLabel);
+    document.getElementById('schemeSelect').style.display = 'flex';
     //Create a dropdown menu
-    const dropdown = document.createElement('form');
-    dropdown.setAttribute('action', '#');
-    const dropdownLabel = document.createElement('label');
-    dropdownLabel.setAttribute('for', 'schemes');
-    const dropdownSelect = document.createElement('select');
-    dropdownSelect.setAttribute('name', 'colorSchemes');
-    const dropdownInput = document.createElement('input');
-    dropdownInput.setAttribute('type', 'submit');
-    dropdownInput.setAttribute('value', 'Submit');
-    dropdownInput.setAttribute('id', 'submit');
 
-    const option1 = document.createElement('option');
-    option1.setAttribute("value", "complementary");
-    option1.innerHTML = 'Complementary';
-    const option2 = document.createElement('option');
-    option2.setAttribute("value", "triadic");
-    option2.innerHTML = 'Triadic';
-    const option3 = document.createElement('option');
-    option3.setAttribute("value", "analogous");
-    option3.innerHTML = 'Analogous';
+    // const dropdown = document.createElement('select');
+    // dropdown.setAttribute('action', '#');
+    // dropdown.setAttribute('name', 'colorScheme')
+    // const dropdownLabel = document.createElement('label');
+    // dropdownLabel.setAttribute('for', 'schemes');
 
-    dropdownSelect.appendChild(option1);
-    dropdownSelect.appendChild(option2);
-    dropdownSelect.appendChild(option3);
-    dropdown.appendChild(dropdownSelect);
-    dropdown.appendChild(dropdownLabel);
-    dropdown.appendChild(dropdownInput);
+    // const dropdownSelect = document.createElement('select');
+    // dropdownSelect.setAttribute('name', 'colorSchemes');
 
-    document.getElementById('schemeSelect').appendChild(dropdown);
+    // const dropdownInput = document.createElement('input');
+    // dropdownInput.setAttribute('type', 'submit');
+    // dropdownInput.setAttribute('value', 'Submit');
+    // dropdownInput.setAttribute('id', 'submit');
 
-    dropdownInput.addEventListener('click', function () {
-      document.body.style.height = '850px';
-      const scheme = dropdownInput.value;
-      if(scheme === option2){
-        console.log('test');
-      }
+    // const option0 = document.createElement('option');
+    // option0.setAttribute('value', '');
+    // option0.innerHTML = 'Select One...';
+    // const option1 = document.createElement('option');
+    // option1.setAttribute("value", "complementary");
+    // option1.innerHTML = 'Complementary';
+    // const option2 = document.createElement('option');
+    // option2.setAttribute("value", "triadic");
+    // option2.innerHTML = 'Triadic';
+    // const option3 = document.createElement('option');
+    // option3.setAttribute("value", "tetradic");
+    // option3.innerHTML = 'Tetradic';
+    // const option4 = document.createElement('option');
+    // option4.setAttribute('value', 'analogous');
+    // option4.innerHTML = 'Analogous';
 
-    });
+    // dropdownSelect.appendChild(option0);
+    // dropdownSelect.appendChild(option1);
+    // dropdownSelect.appendChild(option2);
+    // dropdownSelect.appendChild(option3);
+    // dropdownSelect.appendChild(option4);
+    // dropdown.appendChild(dropdownSelect);
+
+    // dropdown.appendChild(dropdownLabel);
+    // dropdown.appendChild(dropdownInput);
+
+    // document.getElementById('schemeSelect').appendChild(dropdownSelect);
+    const dropdownSelect = document.getElementById("ice-cream");
+    dropdownSelect.addEventListener('change', (event)=>{
+      console.log('you made a change!');
+      let colorScheme = event.target.value;
+      document.body.style.height = '900px';
+      document.getElementById('palettes').style.display = 'flex';
+    })
+
+    // if event.target.value = "complementary"
+      //create one box and set its color vato complementary function
+    //if event.target.value = "ti"
+    // dropdownInput.addEventListener('click', function () {
+    //   document.body.style.height = '850px';
+    //   const scheme = dropdownInput.value;
+    //   if(scheme === option2){
+    //     console.log('test');
+    //   }
+
+    // });
   }) 
 });
 

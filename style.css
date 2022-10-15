@@ -95,11 +95,32 @@ input{
 #render{
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
+
+
 #palettes{
   display: none;
   width: 300px;
-  height: 300px;
+  height: 150px;
   margin-top: 50px;
   border: 2px dashed black;
 }
+
+#triadic, #tetradic, 
+#analogous{
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+#triadic{
+  display: none;
+}
+#tetradic{
+  display: none;
+}
+#analogous{
+  display: none;
+}
+
+

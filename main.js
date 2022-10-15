@@ -1,67 +1,43 @@
-let baseColor = document.getElementById("main-color").style.color;
+document.addEventListener('DOMContentLoaded', () => {
+  const goButton = document.getElementById('GoButton');
+  const selectedColorSwatch = document.getElementById('displaySelectedColor');
 
-document.getElementById("comp-color").color = hsl()
+  goButton.addEventListener('click', function () {
+    //get color entered and set it as selected color
+    let color = document.getElementById('colorPicked').value;
+    selectedColorSwatch.style.backgroundColor = color;
+    //extend the viewport to accomodate label and dropdown menu
+    document.body.style.height = '350px';
+    //Label/text for this section
+    const renderLabel = document.createElement('h3')
+    renderLabel.setAttribute("class", "selectScheme");
+    renderLabel.innerHTML = 'Select a Color Scheme';
+    renderLabel.style.marginTop = '15px';
+    document.getElementById('render').appendChild(renderLabel);
+    //Create a dropdown menu
+    // const dropdown = document.createElement('form');
+    // const dropdownLabel = document.createElement('label');
+    // dropdownLabel.setAttribute('for', 'schemes');
+    // const dropdownSelect = document.createElement('select');
+    // dropdownSelect.setAttribute('name', 'colorSchemes');
 
-//This was commented out to take care of the error chrome
+    // const option1 = document.createElement('option');
+    // option1.setAttribute("value", "complementary");
+    // option1.innerHTML = 'Complementary';
+    // const option2 = document.createElement('option');
+    // option2.setAttribute("value", "triadic");
+    // option2.innerHTML = 'Triadic';
+    // const option3 = document.createElement('option');
+    // option3.setAttribute("value", "compound");
+    // option3.innerHTML = 'Compound';
 
-{/* <div id="main-color">main color</div>
-<div id="comp-color">complementary color</div>
-<div id="triad-1">triadic color 1</div>
-<div id="triad-2">triadic color 2</div> */}
+    // dropdownSelect.appendChild(option1, option2, option3);
+    // dropdownLabel.appendChild(dropdownSelect);
+    // dropdown.appendChild(dropdownLabel);
 
-//This is the algo for RGB/HEX conversion just in case we need it*************************************************
+    // document.getElementById('render').appendChild('render');
 
-// function rgb(r, g, b) {
-//   //intialize empty string to store HEX values
-//   let convertedHEX = '';
-
-//   //intiailize empty array to store the args to be looped through
-//   const args = [r, g, b];
-
-//   //initialize an object with the Dec-Hex values from 10-15; 0-9 are the same.
-//   const hexFrom10to15 = {
-//     10: 'A',
-//     11: 'B',
-//     12: 'C',
-//     13: 'D',
-//     14: 'E',
-//     15: 'F',
-//   };
-
-//   //initialize 2 variables to store the remainders of division from the loop below.
-//   let wholeNumber;
-//   let remainderNum;
-
-//   //Loop through args
-//   for (const element of args) {
-//     //if an input is invalid: negative or over 255; 00/FF
-//     if (element < 0) {
-//       convertedHEX += '00';
-//     } else if (element > 255) {
-//       convertedHEX += 'FF';
-//     } else {
-//       //If valid, assign the following 2 variables
-//       wholeNumber = Math.floor(element / 16);
-//       remainderNum = element % 16;
-
-//       //First value with the whole number from division
-//       if (wholeNumber < 10) {
-//         //If less than 10, add the number directly as a string
-//         convertedHEX += String(wholeNumber);
-//       } else {
-//         //If greater than 10, use as key to use the value
-//         convertedHEX += hexFrom10to15[wholeNumber];
-//       }
-//       //Second value from modulo
-//       if (remainderNum < 10) {
-//         //If less than 10, add the number directly as a string
-//         convertedHEX += String(remainderNum);
-//       } else {
-//         //If greater than 10, use as key to use the value
-//         convertedHEX += hexFrom10to15[remainderNum];
-//       }
-//     }
-//   }
-//   //Return HEX string:
-//   return convertedHEX;
-// }
+    
+    
+  
+});

@@ -7,10 +7,35 @@
    
   </head>
   <body>
-    <div id="main-color">main color</div>
+    <!-- Top section which includes minimalized logo and banner -->
+    <div id="top">
+      <img id="banner" src="/images/banner.png" alt="icon">
+      <img id="logo" src="/images/min-logo.png" alt="icon">
+    </div>
+    <!-- Enter color code and display color -->
+    <div id="selection">
+      <h3 class="selectScheme">Enter a color code</h3>
+      <form id="firstInput">
+        <input type="text" id="colorPicked" name="color" placeholder="Include commas & symbols">
+        <button id="GoButton" type="button">GO!</button>
+      </form>
+      <div id = "displaySelectedColor"></div>
+    </div>
+    <!-- Color Palete Rendering Section -->
+      <div id="render">
+        <!-- <h3 id="selectScheme">Select a color scheme</h3>
+
+        <div id="colorPalettes"></div> -->
+      </div> 
+
+
+
+
+
+    <!-- <div id="main-color">main color</div>
     <div id="comp-color">complementary color</div>
     <div id="triad-1">triadic color 1</div>
-    <div id="triad-2">triadic color 2</div>
+    <div id="triad-2">triadic color 2</div> -->
     <script src='main.js'></script>
   </body>
 </html>

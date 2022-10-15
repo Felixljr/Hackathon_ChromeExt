@@ -1,92 +1,122 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const goButton = document.getElementById('GoButton');
-  const selectedColorSwatch = document.getElementById('displaySelectedColor');
+document.addEventListener("DOMContentLoaded", () => {
+  const goButton = document.getElementById("GoButton");
+  const selectedColorSwatch = document.getElementById("displaySelectedColor");
 
-  goButton.addEventListener('click', function () {
+  goButton.addEventListener("click", function () {
     //get color entered and set it as selected color
-    let color = document.getElementById('colorPicked').value;
+    let color = document.getElementById("colorPicked").value;
     selectedColorSwatch.style.backgroundColor = color;
     //extend the viewport to accomodate label and dropdown menu
-    document.body.style.height = '350px';
+    document.body.style.height = "350px";
     //Label/text for this section
-    document.getElementById('schemeSelect').style.display = 'flex';
-  
-
+    document.getElementById("schemeSelect").style.display = "flex";
 
     const dropdownSelect = document.getElementById("ice-cream");
-    dropdownSelect.addEventListener('change', (event)=>{
+    dropdownSelect.addEventListener("change", (event) => {
+      let elPallettes = document.getElementById("palettes");
+      // not sure how to remove an event listener properly at the moment
+      // when the change happens, we have to remove the old event listeners
+      // from the elements
+      // elPallettes.removeEventListener("click", getColor, true);
       // console.log('you made a change!');
-      document.getElementById("triadic").style.display = 'none';
-      document.getElementById("analogous").style.display = 'none';
-      document.getElementById("tetradic").style.display = 'none';
+      resetColors();
       let colorScheme = event.target.value;
-      document.body.style.height = '580px';
-      document.getElementById('palettes').style.display = 'flex';
-      const keyObj = {'complementary': 1,
-      'triadic': 2,
-      'tetradic': 3,
-      'Analogous': 2
-    };
-    if (colorScheme === 'complementary'){
-      let compColor = toRGBArray(color);
-      compColor = RGBToHSL(compColor);
-      compColor = toHSLArray(compColor);
-      compColor = getComplementColor(compColor);
-      document.getElementById("palettes").style.backgroundColor = compColor;
-      console.log(compColor);
-    }
-    else if (colorScheme === 'triadic'){
-      console.log('triadic was triggered');
-      let compColor = toRGBArray(color);
-      compColor = RGBToHSL(compColor);
-      compColor = toHSLArray(compColor);
-      triColors = getTriadicColors(compColor);
-      console.log(triColors);
-      document.getElementById("triadic").style.display = 'flex';
-       document.getElementById('color1').style.width = '150px';
-       document.getElementById('color1').style.height = '150px';
-      document.getElementById("color1").style.backgroundColor = triColors[0];
-      document.getElementById("color2").style.width = '150px';
-      document.getElementById('color2').style.height = '150px';
-      document.getElementById("color2").style.backgroundColor = triColors[1];
-    }
-    else if (colorScheme === 'tetradic'){
-      let compColor = toRGBArray(color);
-      compColor = RGBToHSL(compColor);
-      compColor = toHSLArray(compColor);
-      tetColors = getTetradicColors(compColor);
-      console.log(tetColors);
-      document.getElementById("tetradic").style.display = 'flex';
-      document.getElementById('color3').style.width = '100px';
-      document.getElementById('color3').style.height = '150px';
-      document.getElementById("color3").style.backgroundColor = tetColors[0];
-      document.getElementById("color4").style.width = '100px';
-      document.getElementById('color4').style.height = '150px';
-      document.getElementById("color4").style.backgroundColor = tetColors[1];
-      document.getElementById("color5").style.width = '100px';
-      document.getElementById('color5').style.height = '150px';
-      document.getElementById("color5").style.backgroundColor = tetColors[2];
-    }
-    else if (colorScheme = "Analogous"){
-      let compColor = toRGBArray(color);
-      compColor = RGBToHSL(compColor);
-      compColor = toHSLArray(compColor);
-      anaColors = getAnalagousColors(compColor);
-      console.log(anaColors);
-      document.getElementById("analogous").style.display = 'flex';
-      document.getElementById('color6').style.width = '150px';
-      document.getElementById('color6').style.height = '150px';
-      document.getElementById("color6").style.backgroundColor = anaColors[0];
-      document.getElementById("color7").style.width = '150px';
-      document.getElementById('color7').style.height = '150px';
-      document.getElementById("color7").style.backgroundColor = anaColors[1];
-    }
+      document.body.style.height = "580px";
+      document.getElementById("palettes").style.display = "flex";
+      //refactor on converting the color to an HSL format
+      let hslColor = toRGBArray(color);
+      hslColor = RGBToHSL(hslColor);
+      hslColor = toHSLArray(hslColor);
 
-    })
-
-
-  }) 
+      if (colorScheme === "complementary") {
+        compColor = getComplementColor(hslColor);
+        let color0 = document.getElementById("color0");
+        document.getElementById("complementary").style.display = "flex";
+        color0.style.width = "300px";
+        color0.style.height = "150px";
+        color0.style.backgroundColor = compColor;
+        color0.addEventListener("click", function getColor() {
+          navigator.clipboard.writeText(compColor);
+        });
+        console.log(compColor);
+      } else if (colorScheme === "triadic") {
+        // console.log("triadic was triggered");
+        let triColors = getTriadicColors(hslColor);
+        let color1 = document.getElementById("color1");
+        let color2 = document.getElementById("color2");
+        console.log(triColors);
+        document.getElementById("triadic").style.display = "flex";
+        color1.style.width = "150px";
+        color1.style.height = "150px";
+        color1.style.backgroundColor = triColors[0];
+        color2.style.width = "150px";
+        color2.style.height = "150px";
+        color2.style.backgroundColor = triColors[1];
+        color1.addEventListener("click", function getColor() {
+          navigator.clipboard.writeText(triColors[0]);
+        });
+        color2.addEventListener("click", function getColor() {
+          navigator.clipboard.writeText(triColors[1]);
+        });
+      } else if (colorScheme === "tetradic") {
+        let tetColors = getTetradicColors(hslColor);
+        let color3 = document.getElementById("color3");
+        let color4 = document.getElementById("color4");
+        let color5 = document.getElementById("color5");
+        // console.log(tetColors);
+        document.getElementById("tetradic").style.display = "flex";
+        color3.style.width = "100px";
+        color3.style.height = "150px";
+        color3.style.backgroundColor = tetColors[0];
+        color4.style.width = "100px";
+        color4.style.height = "150px";
+        color4.style.backgroundColor = tetColors[1];
+        color5.style.width = "100px";
+        color5.style.height = "150px";
+        color5.style.backgroundColor = tetColors[2];
+        color3.addEventListener("click", function getColor() {
+          navigator.clipboard.writeText(tetColors[0]);
+        });
+        color4.addEventListener("click", function getColor() {
+          navigator.clipboard.writeText(tetColors[1]);
+        });
+        color5.addEventListener("click", function getColor() {
+          navigator.clipboard.writeText(tetColors[2]);
+        });
+      } else if ((colorScheme = "Analogous")) {
+        let anaColors = getAnalagousColors(hslColor);
+        let color6 = document.getElementById("color6");
+        let color7 = document.getElementById("color7");
+        console.log(anaColors);
+        document.getElementById("analogous").style.display = "flex";
+        color6.style.width = "150px";
+        color6.style.height = "150px";
+        color6.style.backgroundColor = anaColors[0];
+        color7.style.width = "150px";
+        color7.style.height = "150px";
+        color7.style.backgroundColor = anaColors[1];
+        color6.addEventListener("click", function getColor() {
+          navigator.clipboard.writeText(anaColors[0]);
+        });
+        color7.addEventListener("click", function getColor() {
+          navigator.clipboard.writeText(anaColors[1]);
+        });
+      }
+    });
+  });
 });
+
+function resetColors() {
+  for (let i = 0; i <= 7; i++) {
+    let color = document.getElementById(`color${i}`);
+    color.style.height = "0px";
+    color1.style.width = "0px";
+  }
+  document.getElementById("complementary").style.display = "none";
+  document.getElementById("triadic").style.display = "none";
+  document.getElementById("analogous").style.display = "none";
+  document.getElementById("tetradic").style.display = "none";
+}
 
 function RGBToHSL([r, g, b]) {
   // Make r, g, and b fractions of 1
@@ -179,3 +209,5 @@ function extractElColorById(elID) {
   let el = document.getElementById(elID);
   return getComputedStyle(el).color;
 }
+
+// rgb(59, 100, 50)

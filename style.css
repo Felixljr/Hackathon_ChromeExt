@@ -3,21 +3,23 @@
 }
 
 body {
-  background-color: #FFD3BA;
+  background-color: #ffd3ba;
   width: 400px;
   height: 275px;
 }
 /* common elements that are centered */
-#banner, #displaySelectedColor, 
-#colorPicked, #colorPalettes{
-  display:block;
+#banner,
+#displaySelectedColor,
+#colorPicked,
+#colorPalettes {
+  display: block;
   margin: auto;
 }
 
 /* Top section div including logo and banner */
 
-#logo{
-  display:inline-block;
+#logo {
+  display: inline-block;
   position: absolute;
   width: 50px;
   height: 50px;
@@ -25,26 +27,28 @@ body {
   top: 5px;
 }
 
-#banner{
+#banner {
   width: 250px;
   height: 125px;
 }
 
 /* For both text labels */
-.selectScheme, p{
+.selectScheme,
+p {
   text-align: center;
   margin-bottom: 10px;
   font-weight: 200;
   font-size: 16px;
 }
 /* section to select a color */
-#firstInput, #schemeSelect{
+#firstInput,
+#schemeSelect {
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
 
-input{
+input {
   border-radius: 8px;
   width: 165px;
   margin-left: 0 !important;
@@ -53,36 +57,35 @@ input{
   outline: none;
 }
 
-#schemeSelect{
+#schemeSelect {
   display: none;
 }
 
 /* input placeholder font to gray/light*/
-::placeholder { 
+::placeholder {
   color: rgb(170, 166, 166);
 }
 
-#GoButton{
+#GoButton {
   border-radius: 8px;
   padding-left: 3px;
   padding-right: 3px;
   color: #312339;
   margin-left: 5px;
-  background-color: rgb(103, 217, 179);;
+  background-color: rgb(103, 217, 179);
 }
 
-
-#submit{
+#submit {
   width: auto;
   border-radius: 8px;
   border: 1px solid black;
   padding-left: 3px;
   padding-right: 3px;
   color: #312339;
-  background-color: rgb(103, 217, 179);;
+  background-color: rgb(103, 217, 179);
 }
 
-#displaySelectedColor{
+#displaySelectedColor {
   width: 300px;
   height: 75px;
   margin-top: 10px;
@@ -92,14 +95,13 @@ input{
 }
 
 /* Color rendering Section */
-#render{
+#render {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-
-#palettes{
+#palettes {
   display: none;
   width: 300px;
   height: 150px;
@@ -107,20 +109,11 @@ input{
   border: 2px dashed black;
 }
 
-#triadic, #tetradic, 
-#analogous{
+#complementary,
+#triadic,
+#tetradic,
+#analogous {
   flex-direction: row;
   justify-content: space-around;
-}
-
-#triadic{
   display: none;
 }
-#tetradic{
-  display: none;
-}
-#analogous{
-  display: none;
-}
-
-
